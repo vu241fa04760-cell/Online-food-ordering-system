@@ -67,7 +67,7 @@ const connectDB = async () => {
     await autoSeedIfNeeded();
     return conn;
   } catch (initialError) {
-    console.log(`[MongoDB] Connection to ${uri} failed: ${initialError.message}`);
+    console.log(`[MongoDB] Connection failed: ${initialError.message}`);
     console.log('[MongoDB] Checking if local mongod can be launched...');
 
     const started = startLocalMongo();
@@ -81,6 +81,7 @@ const connectDB = async () => {
         return conn;
       } catch (retryError) {
         console.warn(`[MongoDB Auto-Launch Warning]: ${retryError.message}`);
+        throw retryError;
       }
     }
 
@@ -91,6 +92,7 @@ const connectDB = async () => {
     console.warn('     net start MongoDB');
     console.warn('  2. Or run: npm run mongo');
     console.warn('======================================================\n');
+    throw initialError;
   }
 };
 

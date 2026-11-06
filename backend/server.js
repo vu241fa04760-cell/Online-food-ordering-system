@@ -10,9 +10,6 @@ const errorHandler = require('./middleware/error');
 // Load environment variables
 dotenv.config();
 
-// Connect to MongoDB
-connectDB();
-
 const app = express();
 
 // Middleware
@@ -71,6 +68,16 @@ app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
-  console.log(`[Food Ordering API Server] running on http://localhost:${PORT}`);
-});
+const startServer = async () => {
+  try {
+    await connectDB();
+    app.listen(PORT, () => {
+      console.log(`[Food Ordering API Server] running on http://localhost:${PORT}`);
+    });
+  } catch (error) {
+    console.error('[Startup] MongoDB connection failed; the API server was not started.', error);
+    process.exitCode = 1;
+  }
+};
+
+startServer();

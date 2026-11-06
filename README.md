@@ -98,6 +98,8 @@ npm run client
 
 Open `http://localhost:5173` in your browser.
 
+The Vite development server proxies API requests to the backend on port `5000`. Start the backend before the frontend; if MongoDB is unavailable, the backend will not start and API requests will fail rather than being saved to a local mock JSON file. To start all services together, use `npm run dev`.
+
 ---
 
 ## 🔑 Demo Accounts

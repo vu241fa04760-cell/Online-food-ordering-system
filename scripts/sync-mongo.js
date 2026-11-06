@@ -35,8 +35,8 @@ async function syncToMongo() {
       const usersCol = db.collection('users');
       let usersSynced = 0;
       for (const u of store.users) {
-        const { _id, ...userData } = u;
-        const result = await usersCol.updateOne(
+        const { _id, createdAt, ...userData } = u;
+        await usersCol.updateOne(
           { email: u.email.toLowerCase() },
           { 
             $set: {
@@ -45,7 +45,7 @@ async function syncToMongo() {
               updatedAt: new Date()
             },
             $setOnInsert: {
-              createdAt: new Date()
+              createdAt: createdAt ? new Date(createdAt) : new Date()
             }
           },
           { upsert: true }
@@ -60,9 +60,10 @@ async function syncToMongo() {
     if (store.restaurants && store.restaurants.length > 0) {
       const restCol = db.collection('restaurants');
       for (const r of store.restaurants) {
+        const { _id, ...restData } = r;
         await restCol.updateOne(
           { name: r.name },
-          { $set: { ...r, updatedAt: new Date() } },
+          { $set: { ...restData, updatedAt: new Date() } },
           { upsert: true }
         );
       }
@@ -73,9 +74,10 @@ async function syncToMongo() {
     if (store.foods && store.foods.length > 0) {
       const foodCol = db.collection('foods');
       for (const f of store.foods) {
+        const { _id, ...foodData } = f;
         await foodCol.updateOne(
           { name: f.name },
-          { $set: { ...f, updatedAt: new Date() } },
+          { $set: { ...foodData, updatedAt: new Date() } },
           { upsert: true }
         );
       }
@@ -86,9 +88,10 @@ async function syncToMongo() {
     if (store.orders && store.orders.length > 0) {
       const orderCol = db.collection('orders');
       for (const o of store.orders) {
+        const { _id, ...orderData } = o;
         await orderCol.updateOne(
           { _id: o._id },
-          { $set: { ...o, updatedAt: new Date() } },
+          { $set: { ...orderData, updatedAt: new Date() } },
           { upsert: true }
         );
       }
@@ -96,7 +99,7 @@ async function syncToMongo() {
     }
 
     console.log('====================================================');
-    console.log('🎉 All Customer and Restaurant data is now in MongoDB!');
+    console.log('🎉 All Customer, Restaurant, and Food data is now in MongoDB!');
     console.log('====================================================');
   } catch (err) {
     console.error('❌ MongoDB Sync Failed:', err.message);
