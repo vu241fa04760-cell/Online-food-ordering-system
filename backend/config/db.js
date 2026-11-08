@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const dns = require('node:dns');
 const { spawn } = require('child_process');
 const fs = require('fs');
 const path = require('path');
@@ -10,6 +11,9 @@ const possibleMongodPaths = [
   'C:\\Program Files\\MongoDB\\Server\\6.0\\bin\\mongod.exe',
   'mongod'
 ];
+
+const isLocalMongoUri = (uri) =>
+  /^mongodb(?:\+srv)?:\/\/(?:localhost|127\.0\.0\.1|\[::1\])(?::|\/|$)/i.test(uri);
 
 function findMongodPath() {
   for (const p of possibleMongodPaths) {
@@ -59,6 +63,15 @@ async function autoSeedIfNeeded() {
 }
 
 const connectDB = async () => {
+  const dnsServers = (process.env.MONGODB_DNS_SERVERS || '')
+    .split(',')
+    .map((server) => server.trim())
+    .filter(Boolean);
+  if (dnsServers.length > 0) {
+    dns.setServers(dnsServers);
+    console.log(`[MongoDB] Using configured DNS servers: ${dnsServers.join(', ')}`);
+  }
+
   const uri = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/food_ordering_db';
 
   try {
@@ -68,6 +81,10 @@ const connectDB = async () => {
     return conn;
   } catch (initialError) {
     console.log(`[MongoDB] Connection failed: ${initialError.message}`);
+    if (!isLocalMongoUri(uri)) {
+      throw initialError;
+    }
+
     console.log('[MongoDB] Checking if local mongod can be launched...');
 
     const started = startLocalMongo();

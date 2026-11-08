@@ -15,6 +15,8 @@ frontend/dist-ssr/
 dist/
 
 # Environment files
+.env
+backend/.env
 .env.local
 .env.*.local
 

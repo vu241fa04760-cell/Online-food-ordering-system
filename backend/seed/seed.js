@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const path = require('path');
 const User = require('../models/User');
 const Restaurant = require('../models/Restaurant');
 const Food = require('../models/Food');
@@ -7,7 +8,7 @@ const Cart = require('../models/Cart');
 const Order = require('../models/Order');
 const Payment = require('../models/Payment');
 
-dotenv.config();
+dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
 const seedData = async (exitOnComplete = true) => {
   try {

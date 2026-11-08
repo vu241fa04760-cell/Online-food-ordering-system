@@ -76,7 +76,16 @@ Online Food Ordering System
 
 ### Prerequisites
 - **Node.js** (v18+)
-- **MongoDB** running locally on port `27017`
+- **MongoDB** running locally on port `27017`, or a MongoDB Atlas cluster
+
+### Configure MongoDB Atlas (optional)
+1. Create a database user for the Atlas cluster and allow your current IP in **Network Access**.
+2. Copy `backend/.env.example` to `backend/.env`.
+3. Replace the `MONGODB_URI` value with Atlas's connection string, including the database name `food_ordering_db`.
+4. Replace the URI username and password placeholders. URL-encode special characters in the password.
+
+Keep `backend/.env` private; it is ignored by Git. The backend uses this URI for both the API server and the seed script.
+If Node.js cannot resolve Atlas's DNS SRV record on your network, add `MONGODB_DNS_SERVERS=1.1.1.1,8.8.8.8` to `backend/.env`. This optional setting configures Node's DNS resolvers for the backend process.
 
 ### 1. Seed the Database
 Populates 6 restaurants, 24 gourmet dishes, demo users, and a sample active tracking order:

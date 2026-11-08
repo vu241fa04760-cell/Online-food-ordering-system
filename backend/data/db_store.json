@@ -62,9 +62,192 @@
         "city": "San Francisco"
       },
       "createdAt": "2026-10-31T03:55:46.645Z"
+    },
+    {
+      "_id": "user_1793952719720",
+      "name": "santhuuuu",
+      "email": "shalembommavarapu@gmail.com",
+      "password": "123456",
+      "role": "customer",
+      "phone": "9390674689",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&auto=format&fit=crop&q=80",
+      "address": {
+        "street": "vignan university,vadlamudi",
+        "city": "San Francisco"
+      },
+      "createdAt": "2026-11-06T08:11:59.720Z"
+    },
+    {
+      "_id": "user_1793956774119",
+      "name": "vishnu vardhan Koppula",
+      "email": "vu.241fa04760@gmail.com",
+      "password": "@vishnu#",
+      "role": "customer",
+      "phone": "+1 (555) 000-0000",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&auto=format&fit=crop&q=80",
+      "address": {
+        "street": "452 Elm Street",
+        "city": "San Francisco"
+      },
+      "createdAt": "2026-11-06T09:19:34.120Z"
     }
   ],
   "orders": [
+    {
+      "_id": "ord_1793956922201",
+      "user": "user_sarah",
+      "restaurant": {
+        "_id": "rest_01",
+        "name": "Bella Napoli Trattoria",
+        "description": "Authentic wood-fired Neapolitan pizzas, artisanal handmade pasta, and classic Italian desserts.",
+        "cuisine": [
+          "Italian",
+          "Pizza",
+          "Pasta"
+        ],
+        "image": "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&auto=format&fit=crop&q=80",
+        "rating": 4.8,
+        "reviewsCount": 342,
+        "deliveryTime": "20-30 min",
+        "deliveryFee": 1.99,
+        "minOrder": 15,
+        "address": {
+          "street": "184 Columbus Ave",
+          "city": "San Francisco",
+          "coordinates": {
+            "lat": 37.7981,
+            "lng": -122.4075
+          }
+        },
+        "createdAt": "2026-10-31T03:38:44.921Z"
+      },
+      "items": [
+        {
+          "food": "food_04",
+          "name": "Crispy Calamari Fritti",
+          "price": 12.99,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1599488615731-7e5c2823ff28?w=600&auto=format&fit=crop&q=60"
+        }
+      ],
+      "subtotal": 12.99,
+      "deliveryFee": 1.99,
+      "tax": 1.04,
+      "totalAmount": 16.02,
+      "deliveryAddress": {
+        "street": "452 Elm Street",
+        "city": "San Francisco",
+        "zipCode": "94103",
+        "phone": "+1 (555) 800-4321",
+        "tag": "Home",
+        "coordinates": {
+          "lat": 37.7749,
+          "lng": -122.4194
+        }
+      },
+      "status": "placed",
+      "paymentStatus": "completed",
+      "paymentMethod": "card",
+      "deliveryPartner": {
+        "name": "Alex Morgan",
+        "phone": "+1 (555) 234-5678",
+        "vehicle": "Electric Scooter (EV-902)",
+        "rating": 4.9,
+        "currentLocation": {
+          "lat": 37.7801,
+          "lng": -122.411
+        }
+      },
+      "estimatedDeliveryTime": "25-35 mins",
+      "createdAt": "2026-11-06T09:22:02.201Z",
+      "statusTimeline": [
+        {
+          "status": "placed",
+          "timestamp": "2026-11-06T09:22:02.201Z",
+          "message": "Order received and confirmed by Bella Napoli Trattoria"
+        }
+      ]
+    },
+    {
+      "_id": "ord_1793953086379",
+      "user": "user_sarah",
+      "restaurant": {
+        "_id": "rest_01",
+        "name": "Bella Napoli Trattoria",
+        "description": "Authentic wood-fired Neapolitan pizzas, artisanal handmade pasta, and classic Italian desserts.",
+        "cuisine": [
+          "Italian",
+          "Pizza",
+          "Pasta"
+        ],
+        "image": "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&auto=format&fit=crop&q=80",
+        "rating": 4.8,
+        "reviewsCount": 342,
+        "deliveryTime": "20-30 min",
+        "deliveryFee": 1.99,
+        "minOrder": 15,
+        "address": {
+          "street": "184 Columbus Ave",
+          "city": "San Francisco",
+          "coordinates": {
+            "lat": 37.7981,
+            "lng": -122.4075
+          }
+        },
+        "createdAt": "2026-10-31T03:38:44.921Z"
+      },
+      "items": [
+        {
+          "food": "food_05",
+          "name": "Signature Venetian Tiramisu",
+          "price": 8.5,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=600&auto=format&fit=crop&q=60"
+        }
+      ],
+      "subtotal": 8.5,
+      "deliveryFee": 1.99,
+      "tax": 0.68,
+      "totalAmount": 11.17,
+      "deliveryAddress": {
+        "street": "vignan university,vadlamudi",
+        "city": "San Francisco",
+        "zipCode": "522213",
+        "phone": "+1 (555) 800-4321",
+        "tag": "Live GPS",
+        "coordinates": {
+          "lat": 16.23284,
+          "lng": 80.55027
+        }
+      },
+      "status": "confirmed",
+      "paymentStatus": "completed",
+      "paymentMethod": "card",
+      "deliveryPartner": {
+        "name": "Alex Morgan",
+        "phone": "+1 (555) 234-5678",
+        "vehicle": "Electric Scooter (EV-902)",
+        "rating": 4.9,
+        "currentLocation": {
+          "lat": 37.7801,
+          "lng": -122.411
+        }
+      },
+      "estimatedDeliveryTime": "25-35 mins",
+      "createdAt": "2026-11-06T08:18:06.379Z",
+      "statusTimeline": [
+        {
+          "status": "placed",
+          "timestamp": "2026-11-06T08:18:06.379Z",
+          "message": "Order received and confirmed by Bella Napoli Trattoria"
+        },
+        {
+          "status": "confirmed",
+          "timestamp": "2026-11-06T08:19:27.054Z",
+          "message": "Status updated to confirmed by administrator."
+        }
+      ]
+    },
     {
       "_id": "ord_1793419850059",
       "user": "user_sarah",
@@ -810,8 +993,8 @@
   ],
   "cartStore": {
     "user": "user_sarah",
-    "restaurant": "rest_02",
+    "restaurant": "rest_01",
     "items": []
   },
-  "lastSaved": "2026-10-31T04:13:42.977Z"
+  "lastSaved": "2026-11-06T09:22:02.201Z"
 }

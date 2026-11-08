@@ -7,9 +7,9 @@ const runTests = async () => {
   const cors = require('cors');
   const dotenv = require('dotenv');
   const mongoose = require('mongoose');
-  dotenv.config();
+  dotenv.config({ path: require('path').resolve(__dirname, '.env') });
 
-  await mongoose.connect(process.env.MONGODB_URI);
+  await mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/food_ordering_db');
 
   app.use(cors());
   app.use(require('express').json());
